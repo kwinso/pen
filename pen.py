@@ -34,7 +34,7 @@ def main():
     args = parse_args()
     pen_file = os.getenv("HOME") + "/.pen"
 
-    if hasattr(args, "value") and args.vaue is not None:
+    if hasattr(args, "value") and args.value is not None:
         with open(pen_file, "w") as f:
             f.write(args.value)
 
