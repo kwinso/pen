@@ -32,6 +32,10 @@ def main():
     args = parse_args()
     pen_file = os.getenv("HOME") + "/.pen"
 
+    if not hasattr(args, "subp"):
+        print("No subcommand was supplied, exitting")
+        exit()
+
     if hasattr(args, "value") and args.value is not None:
         with open(pen_file, "w") as f:
             f.write(args.value)
