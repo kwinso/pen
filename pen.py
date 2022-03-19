@@ -21,10 +21,8 @@ def parse_args():
         help="Shows an exported $PEN var. (Use -c to copy)",
     ).add_argument(
         "-c",
-        nargs="?",
+        action="store_true",
         help="Show and copy to clipboard",
-        type=bool,
-        default=False,
     )
 
     return parser.parse_args()
@@ -38,13 +36,13 @@ def main():
         with open(pen_file, "w") as f:
             f.write(args.value)
 
-    elif args.subp == "show":
+    elif args.subp.startswith("s"):
         try:
             with open(pen_file, "r") as f:
                 value = f.read()
                 if value:
                     print(value)
-                    if hasattr(args, "c"):
+                    if args.c:
                         os.system(
                             f"echo -n {value} | xclip -selection clipboard")
                         print("Copied to clipboard.")
